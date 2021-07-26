@@ -33,7 +33,7 @@ function mineGenerate (min, max) {
     for (i = 0; i < 16; i++) {
         arrayMine.push(Math.round(Math.random() * max) + min);
     }
-    return Math.round(Math.random() * (max - min)) + min;
+    return Math.round(Math.random() * max) + min
 }
 
 
