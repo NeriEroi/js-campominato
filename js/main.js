@@ -64,15 +64,12 @@ function checkNumber (array, element)
 }
 
 
-
 var bombe = [];
 
 while (bombe.length < 16)
 {
-  
   var newCpuNumber = getRandomNumber(1, 100);
 
-  
   if (bombe.includes(newCpuNumber) == false)  
   {
     bombe.push(newCpuNumber);
@@ -80,6 +77,26 @@ while (bombe.length < 16)
 }
 
 console.log(bombe);
+
+
+
+// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
+
+
+var userNumber = parseInt(prompt('Inserisci un numero da 1 a 100'));
+
+console.log(userNumber);
+
+var isTrovato = checkNumber(bombe, userNumber);
+
+if (isTrovato == true)
+{
+  console.log('Hai perso');
+}
+else
+{
+  console.log('Hai vinto');
+}
 
 
 
