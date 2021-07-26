@@ -19,15 +19,19 @@
 // }
 
 
+
+// Il computer deve generare 16 numeri casuali (le nostre bombe) tra 1 e 100.
+
+
 var arrayMine = [];
 
-var mine = mineGenerate(1, 101);
+var mine = mineGenerate(1, 100);
 
 console.log(arrayMine);
 
 function mineGenerate (min, max) {
     for (i = 0; i < 16; i++) {
-        arrayMine.push(Math.round(Math.random() * (max - min)) + min);
+        arrayMine.push(Math.round(Math.random() * max) + min);
     }
     return Math.round(Math.random() * (max - min)) + min;
 }
