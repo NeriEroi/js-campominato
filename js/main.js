@@ -38,64 +38,78 @@
 
 
 
-// Il computer deve generare 16 numeri casuali (le nostre bombe) tra 1 e 100.
-
-function getRandomNumber (min,max)
-{
-  var newRandomNumber = Math.floor(Math.random() * max - min + 1) + min;
-  return newRandomNumber;
+function randomNumbers (min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// difficoltà
+var level = parseInt(prompt("Scegli il livello di difficoltà: [0/1/2]"));
+var limit;
+switch (level) {
 
-// I numeri non possono essere duplicati.
+  case 1:
+      
+      limit = 80;
+      break;
 
-function checkNumber (array, element)
-{
-  var trovato = false; 
+  case 2:
+     
+      limit = 50;
+      break;
 
-  for (var i = 0; i < array.length; i++)
-  {
-    if (array[i] == element)
-    {
-      trovato = true;
-    }
+  default:
+     
+      limit = 100;
+      break;
+}
+console.log(limit);
+
+// array da 16 numeri generati casualmente
+var bombs = [];
+
+
+while (bombs.length < 16){
+  var pcNumber = randomNumbers(1, limit)
+  
+  if (!bombs.includes(pcNumber)){
+      bombs.push(pcNumber)
   }
-  return trovato;
+
 }
+console.log(bombs);
 
 
-var bombe = [];
+var userArray = [];
 
-while (bombe.length < 16)
-{
-  var newCpuNumber = getRandomNumber(1, 100);
 
-  if (bombe.includes(newCpuNumber) == false)  
-  {
-    bombe.push(newCpuNumber);
+for (i = 1; i <= (limit - 16); i ++){
+  var userNumber = parseInt(prompt("Inserisci un numero tra uno e " + limit + "."))
+  
+ 
+  while (userNumber < 1 || userNumber > limit || isNaN(userNumber)){
+      alert("Inserisci un numero valido!")
+      userNumber = parseInt(prompt("Inserisci un numero tra uno e " + limit + "."))
   }
+
+  
+  if (!userArray.includes(userNumber)){
+      if(bombs.includes(userNumber)){
+          alert("Bomba! Hai perso! Il tuo punteggio è:" + userArray.length);
+          break;
+      }
+      userArray.push(userNumber);
+      console.log(userArray);
+
+  } else {
+      alert("Numero già inserito!");
+      i--;
+  }
+
 }
 
-console.log(bombe);
 
-
-
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-
-
-var userNumber = parseInt(prompt('Inserisci un numero da 1 a 100'));
-
-console.log(userNumber);
-
-var isTrovato = checkNumber(bombe, userNumber);
-
-if (isTrovato == true)
-{
-  console.log('Hai perso');
-}
-else
-{
-  console.log('Hai vinto');
+if(userArray.length === (limit - 16)) {
+  alert("Hai vinto! Punteggio:" + userArray.length);
 }
 
 
