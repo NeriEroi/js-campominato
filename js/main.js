@@ -136,12 +136,10 @@ if (how_difficult == 0) {
 
 for(i = 0; i < bombs_number; i++) {
     random_bomb = Math.floor(Math.random() * 100) + 1;
-    if (array_bomb.indexOf(random_bomb) === -1) {
+    if (array_bomb.indexOf(random_bomb) == -1) {
         array_bomb.push(random_bomb);
     } else {
         i--
-        random_bomb;
-        array_bomb.push(random_bomb);
     }
 };
 
