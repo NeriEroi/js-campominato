@@ -112,16 +112,34 @@
 //   alert("Hai vinto! Punteggio:" + userArray.length);
 // }
 
-// generazione bombe
+// CAMPO MINATO
+
+// dati
 const array_bomb = [];
-const bombs_number = 16;
+let bombs_number;
 let array_giocate = [];
+let giocate;
+
+// difficoltà 
+const how_difficult = parseInt(prompt("Choose Difficult: 0 = Easy ; 1 = Medium ; 2 = Hard"));
+if (how_difficult == 0) {
+    bombs_number = 5;
+    giocate = 1;
+} else if (how_difficult == 1) {
+    bombs_number = 10;
+    giocate = 2;
+} else if (how_difficult == 2) {
+    bombs_number = 15;
+    giocate = 3;
+};
+
 
 for(i = 0; i < bombs_number; i++) {
     random_bomb = Math.floor(Math.random() * 100) + 1;
-    if (array_bomb.indexOf(random_bomb) == -1) {
+    if (array_bomb.indexOf(random_bomb) === -1) {
         array_bomb.push(random_bomb);
     } else {
+        i--
         random_bomb;
         array_bomb.push(random_bomb);
     }
@@ -130,9 +148,6 @@ for(i = 0; i < bombs_number; i++) {
 console.log(array_bomb);
 
 // richiesta delle giocate e verifica se il numero inserito coincida con una bomba oppure no
-let giocate = 3;
-
-
 for(i = 0; i < giocate; i++) {
     playing_request = parseInt(prompt("Inserisci un numero e spera che non coincida con una bomba :)"));
     if (array_bomb.includes(playing_request)) {
@@ -157,6 +172,7 @@ for(i = 0; i < giocate; i++) {
         }
     }
 };
+
 
 
 
